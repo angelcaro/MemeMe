@@ -36,6 +36,35 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="edq-28-7XJ"/>
                                 </items>
                             </toolbar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="d1l-uF-YyG">
+                                <rect key="frame" x="20" y="44" width="560" height="468"/>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W1B-Su-TUO">
+                                <rect key="frame" x="30" y="68" width="540" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="SEl-BG-XVg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                                <connections>
+                                    <outlet property="delegate" destination="VRd-r5-Nm1" id="7IX-bn-rwc"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zjD-da-KOC">
+                                <rect key="frame" x="30" y="438" width="540" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="Gsu-rZ-Tmp"/>
+                                    <constraint firstAttribute="height" constant="50" id="tL3-Nc-GWH"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                                <connections>
+                                    <outlet property="delegate" destination="VRd-r5-Nm1" id="Fy2-RR-z83"/>
+                                </connections>
+                            </textField>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nw7-H8-rg3">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <items>
@@ -54,36 +83,6 @@
                                     <barButtonItem width="4" style="plain" systemItem="fixedSpace" id="M6H-xL-5X3"/>
                                 </items>
                             </toolbar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="d1l-uF-YyG">
-                                <rect key="frame" x="20" y="44" width="560" height="468"/>
-                            </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="W1B-Su-TUO">
-                                <rect key="frame" x="30" y="68" width="540" height="50"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="SEl-BG-XVg"/>
-                                </constraints>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
-                                <connections>
-                                    <outlet property="delegate" destination="VRd-r5-Nm1" id="La4-bV-iMR"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zjD-da-KOC">
-                                <rect key="frame" x="30" y="438" width="540" height="50"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="Gsu-rZ-Tmp"/>
-                                    <constraint firstAttribute="height" constant="50" id="tL3-Nc-GWH"/>
-                                </constraints>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="30"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
-                                <connections>
-                                    <outlet property="delegate" destination="VRd-r5-Nm1" id="Fy2-RR-z83"/>
-                                </connections>
-                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="d2b-wc-m6P" firstAttribute="top" secondItem="d1l-uF-YyG" secondAttribute="bottom" id="3i4-XR-ol0"/>
@@ -108,9 +107,12 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="bottomTextField" destination="zjD-da-KOC" id="QZz-NY-rbb"/>
+                        <outlet property="bottomToolbar" destination="d2b-wc-m6P" id="x72-dz-1P3"/>
                         <outlet property="cameraButton" destination="R0O-pC-tTg" id="LU4-RL-9sk"/>
                         <outlet property="pickerImageView" destination="d1l-uF-YyG" id="a1M-on-tX1"/>
+                        <outlet property="shareButton" destination="oSR-Ks-ha7" id="wbh-Le-Pac"/>
                         <outlet property="topTextField" destination="W1B-Su-TUO" id="QV8-HH-bgu"/>
+                        <outlet property="topToolbar" destination="nw7-H8-rg3" id="y6S-6e-LNt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ish-a6-0LN" userLabel="First Responder" sceneMemberID="firstResponder"/>
