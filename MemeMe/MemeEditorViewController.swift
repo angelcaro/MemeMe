@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class MemeEditorViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var memes: [Meme]!
     
@@ -37,20 +37,9 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
         //Check for camera availability.
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
         
-        
-        //TextField Setup
-        topTextField.text = "TOP"
-        bottomTextField.text = "BOTTOM"
-     
-        topTextField.clearsOnBeginEditing = true
-        bottomTextField.clearsOnBeginEditing = true
-        
-        topTextField.defaultTextAttributes = memeTextAttributes
-        bottomTextField.defaultTextAttributes = memeTextAttributes
-        
-        topTextField.textAlignment = NSTextAlignment.Center
-        bottomTextField.textAlignment = NSTextAlignment.Center
         view.backgroundColor = UIColor.blackColor()
+        
+        keyboardSetup()
         
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         memes = appDelegate.memes
@@ -100,22 +89,22 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
     //Select Camera
     @IBAction func cameraButton(sender: UIBarButtonItem) {
         
-        let camera = UIImagePickerController()
-        camera.delegate = self
-        camera.sourceType = UIImagePickerControllerSourceType.Camera
-        
-        presentViewController(camera, animated: true, completion: nil)
+       imageSource(UIImagePickerControllerSourceType.Camera)
         
     }
    
     //Select Photo from album
     @IBAction func albumButton(sender: AnyObject) {
         
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.delegate = self
-        imagePickerController.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        self.presentViewController(imagePickerController, animated: true, completion: nil)
+       imageSource(UIImagePickerControllerSourceType.PhotoLibrary)
+    }
+    
+    func imageSource(source: UIImagePickerControllerSourceType) {
         
+        let imageSource = UIImagePickerController()
+        imageSource.delegate = self
+        imageSource.sourceType =  source ?? UIImagePickerControllerSourceType.PhotoLibrary
+        presentViewController(imageSource, animated: true, completion: nil)
         
     }
 
@@ -137,6 +126,12 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
             }
             else {
                 print("\(error)")
+                self.viewDidLoad()
+                self.shareButton.enabled = false
+                self.pickerImageView.image = nil
+                self.topToolbar.hidden = false
+                self.bottomToolbar.hidden = false
+                
             }
         }
       
@@ -148,7 +143,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
         
         dismissViewControllerAnimated(true, completion: nil)
         
-        self.viewDidLoad()
+        viewDidLoad()
         shareButton.enabled = false
         pickerImageView.image = nil
         
@@ -185,9 +180,27 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
     }
     
     //Keyboard functions
+    
+    func keyboardSetup() {
+        
+        topTextField.text = "TOP"
+        bottomTextField.text = "BOTTOM"
+        
+        topTextField.clearsOnBeginEditing = true
+        bottomTextField.clearsOnBeginEditing = true
+        
+        topTextField.defaultTextAttributes = memeTextAttributes
+        bottomTextField.defaultTextAttributes = memeTextAttributes
+        
+        topTextField.textAlignment = NSTextAlignment.Center
+        bottomTextField.textAlignment = NSTextAlignment.Center
+       
+        
+    }
+    
     func textFieldShouldReturn(textField: UITextField) -> Bool {
     
-        self.view.endEditing(true)
+        view.endEditing(true)
         return false
         
     }
@@ -211,8 +224,8 @@ class ViewController: UIViewController, UITextFieldDelegate, UIImagePickerContro
     }
     
     func subscribeToKeyboardNotifications() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MemeEditorViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MemeEditorViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
     
     func unsubscribeFromKeyboardNotifications() {
