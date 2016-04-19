@@ -22,15 +22,10 @@ class SentMemesCollectionViewController: UICollectionViewController {
         
         collectionView?.backgroundColor = UIColor.grayColor()
         navigationItem.title = "Sent Memes"
-        //TODO: fix collectionView Layout
-        let space: CGFloat = 3.0
-        let dimension = (view.frame.size.width - (2 * space)) / 3.0
-        
-        //flowLayout.minimumInteritemSpacing = space
-        //flowLayout.itemSize = CGSizeMake(dimension, dimension)
-        
+     
     }
 
+    
 
     // MARK: UICollectionViewDataSource
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -49,15 +44,16 @@ class SentMemesCollectionViewController: UICollectionViewController {
     
         return cell
     }
-    //TODO: Implement segue to set selected image
-   /* override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+   
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         
-        if  segue.identifier == "ShowDetail" {
-            if let detailVC = segue.destinationViewController as? MemeDetailViewController {
-                detailVC.memeDetailImage.image =
-            }
-            
-        }
-    }*/
+        let detailController = self.storyboard!.instantiateViewControllerWithIdentifier("MemeDetailViewController") as! MemeDetailViewController
+        detailController.memeImage  = self.memes[indexPath.row].memedImage
+        self.navigationController!.pushViewController(detailController, animated: true)
+        
+        
+    }
+    
+ 
 
 }
