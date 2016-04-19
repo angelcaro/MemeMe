@@ -8,8 +8,15 @@
 
 import UIKit
 
+
+
 class SentMemesCollectionViewCell: UICollectionViewCell {
     
+    var memes: [Meme] = []
+    
+    @IBOutlet weak var memeImage: UIImageView!
+    @IBOutlet weak var topLabel: UILabel!
+    @IBOutlet weak var bottomLabel: UILabel!
     
     
 }

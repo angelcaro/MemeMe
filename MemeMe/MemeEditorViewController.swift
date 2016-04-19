@@ -44,6 +44,7 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate, UIImagePi
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         memes = appDelegate.memes
         
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -55,6 +56,7 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate, UIImagePi
         } else {
             shareButton.enabled = false
         }
+    
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -122,6 +124,7 @@ class MemeEditorViewController: UIViewController, UITextFieldDelegate, UIImagePi
                 
                 self.topToolbar.hidden = false
                 self.bottomToolbar.hidden = false
+                
                 
             }
             else {
