@@ -25,6 +25,10 @@ class SentMemesCollectionViewController: UICollectionViewController {
      
     }
 
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        collectionView?.reloadData()
+    }
     
 
     // MARK: UICollectionViewDataSource
